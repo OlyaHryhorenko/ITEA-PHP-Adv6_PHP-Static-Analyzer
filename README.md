@@ -16,6 +16,7 @@ Usage
 -----
 
 `$ ./bin/console stat:class-author <src> <email>` - Shows quantity of classes/interfaces/traits created by some developer.
+`$ ./bin/console stat:stat:class-analyze <class>` - Shows quantity of properties and methods with access identifiers in given class. <class> is full name of a class with namespace
 
 License
 -------
