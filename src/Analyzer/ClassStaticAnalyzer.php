@@ -34,9 +34,12 @@ final class ClassStaticAnalyzer {
 	}
 	public function analyze():string {
 
-		$public_methods = count($this->class->getMethods(\ReflectionMethod::IS_PUBLIC));
-		$private_methods = count($this->class->getMethods(\ReflectionMethod::IS_PRIVATE));
-		$protected_methods = count($this->class->getMethods(\ReflectionMethod::IS_PROTECTED));
+		$public_properties_count = count($this->class->getProperties(\ReflectionMethod::IS_PUBLIC));
+		$private_properties_count = count($this->class->getProperties(\ReflectionMethod::IS_PRIVATE));
+		$protected_properties_count = count($this->class->getProperties(\ReflectionMethod::IS_PROTECTED));
+		$public_methods_count = count($this->class->getMethods(\ReflectionMethod::IS_PUBLIC));
+		$private_methods_count = count($this->class->getMethods(\ReflectionMethod::IS_PRIVATE));
+		$protected_methods_count = count($this->class->getMethods(\ReflectionMethod::IS_PROTECTED));
 
 
 		$response =sprintf('Class: %s is %s
@@ -50,12 +53,12 @@ Methods:
     private: %d',
 			$this->class->getName(),
 			$this->get_type(),
-			$public_methods,
-			$protected_methods,
-			$private_methods,
-			$public_methods,
-			$protected_methods,
-			$private_methods );
+			$public_properties_count,
+			$protected_properties_count,
+			$private_properties_count,
+			$public_methods_count,
+			$protected_methods_count,
+			$private_methods_count );
 		return $response;
 	}
 

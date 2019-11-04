@@ -34,9 +34,16 @@ final class ClassStaticCommand  extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output): void
 	{
 		$className = $input->getArgument('class');
-
-		$analyzer = new ClassStaticAnalyzer(new \ReflectionClass($className));
-		$response = $analyzer->analyze();
+		try {
+			if (class_exists($className)) {
+				$analyzer = new ClassStaticAnalyzer(new \ReflectionClass($className));
+				$response = $analyzer->analyze();
+			} else {
+				throw new \Error('Class not found');
+			}
+		} catch (\Error $e) {
+			$response=  $e->getMessage();
+		}
 		$output->writeln($response);
 	}
 
